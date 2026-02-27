@@ -204,64 +204,50 @@
       "id": "e1",
       "source": "users",
       "target": "cloudfront",
-      "label": "HTTPS",
-      "sourceHandle": "bottom",
-      "targetHandle": "top"
+      "label": "HTTPS"
     },
     {
       "id": "e2",
       "source": "cloudfront",
       "target": "alb",
-      "label": "HTTPS",
-      "sourceHandle": "bottom",
-      "targetHandle": "top"
+      "label": "HTTPS"
     },
     {
       "id": "e3",
       "source": "cloudfront",
       "target": "alb2",
-      "label": "HTTPS",
-      "sourceHandle": "bottom",
-      "targetHandle": "top"
+      "label": "HTTPS"
     },
     {
       "id": "e4",
       "source": "alb",
       "target": "ec2_1",
-      "label": "HTTP",
-      "sourceHandle": "right",
-      "targetHandle": "left"
+      "label": "HTTP"
     },
     {
       "id": "e5",
       "source": "alb2",
       "target": "ec2_2",
-      "label": "HTTP",
-      "sourceHandle": "right",
-      "targetHandle": "left"
+      "label": "HTTP"
     },
     {
       "id": "e6",
       "source": "ec2_1",
       "target": "cache",
-      "label": "Redis",
-      "sourceHandle": "bottom",
-      "targetHandle": "top"
+      "label": "Redis"
     },
     {
       "id": "e7",
       "source": "ec2_1",
       "target": "rds_primary",
-      "label": "SQL",
-      "sourceHandle": "bottom",
-      "targetHandle": "top"
+      "label": "SQL"
     },
     {
       "id": "e8",
       "source": "ec2_2",
       "target": "cache",
       "label": "Redis",
-      "sourceHandle": "left",
+      "sourceHandle": "bottom",
       "targetHandle": "right"
     },
     {
@@ -269,7 +255,7 @@
       "source": "ec2_2",
       "target": "rds_primary",
       "label": "SQL",
-      "sourceHandle": "left",
+      "sourceHandle": "bottom",
       "targetHandle": "right"
     },
     {
@@ -277,9 +263,7 @@
       "source": "rds_primary",
       "target": "rds_standby",
       "label": "Replication",
-      "style": "dashed",
-      "sourceHandle": "right",
-      "targetHandle": "left"
+      "style": "dashed"
     }
   ]
 }
