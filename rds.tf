@@ -33,6 +33,11 @@ resource "aws_db_parameter_group" "main" {
     value = "1"
   }
 
+  parameter {
+    name  = "rds.force_ssl"
+    value = "1"
+  }
+
   tags = merge(
     local.common_tags,
     {
@@ -56,6 +61,7 @@ resource "aws_db_instance" "main" {
   allocated_storage     = var.rds_allocated_storage
   storage_type          = "gp3"
   storage_encrypted     = true
+  kms_key_id            = aws_kms_key.rds.arn
   max_allocated_storage = var.rds_allocated_storage * 2
 
   # Database configuration
@@ -65,19 +71,22 @@ resource "aws_db_instance" "main" {
   port     = 5432
 
   # Multi-AZ and backup configuration
-  multi_az                = true
-  backup_retention_period = 7
-  backup_window           = "03:00-04:00"
-  maintenance_window      = "mon:04:00-mon:05:00"
-  copy_tags_to_snapshot   = true
-  deletion_protection     = false
-  skip_final_snapshot     = true
+  multi_az                   = true
+  backup_retention_period    = 7
+  backup_window              = "03:00-04:00"
+  maintenance_window         = "mon:04:00-mon:05:00"
+  copy_tags_to_snapshot      = true
+  deletion_protection        = true
+  skip_final_snapshot        = false
+  final_snapshot_identifier  = "${local.name_prefix}-final-snapshot-${formatdate("YYYY-MM-DD-hhmm", timestamp())}"
+  auto_minor_version_upgrade = true
 
   # Network and security
-  db_subnet_group_name   = aws_db_subnet_group.main.name
-  vpc_security_group_ids = [aws_security_group.rds.id]
-  parameter_group_name   = aws_db_parameter_group.main.name
-  publicly_accessible    = false
+  db_subnet_group_name                = aws_db_subnet_group.main.name
+  vpc_security_group_ids              = [aws_security_group.rds.id]
+  parameter_group_name                = aws_db_parameter_group.main.name
+  publicly_accessible                 = false
+  iam_database_authentication_enabled = true
 
   # Monitoring
   enabled_cloudwatch_logs_exports       = ["postgresql", "upgrade"]
@@ -85,6 +94,7 @@ resource "aws_db_instance" "main" {
   monitoring_role_arn                   = aws_iam_role.rds_monitoring.arn
   performance_insights_enabled          = true
   performance_insights_retention_period = 7
+  performance_insights_kms_key_id       = aws_kms_key.rds.arn
 
   tags = merge(
     local.common_tags,

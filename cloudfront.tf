@@ -4,11 +4,19 @@
 resource "aws_cloudfront_distribution" "main" {
   count = var.enable_cloudfront ? 1 : 0
 
-  enabled         = true
-  is_ipv6_enabled = true
-  comment         = "CloudFront distribution for ${local.name_prefix}"
-  price_class     = "PriceClass_100"
-  http_version    = "http2and3"
+  enabled             = true
+  is_ipv6_enabled     = true
+  comment             = "CloudFront distribution for ${local.name_prefix}"
+  price_class         = "PriceClass_100"
+  http_version        = "http2and3"
+  default_root_object = "index.html"
+  web_acl_id          = var.enable_cloudfront ? aws_wafv2_web_acl.cloudfront[0].arn : null
+
+  logging_config {
+    include_cookies = false
+    bucket          = var.enable_cloudfront ? aws_s3_bucket.cloudfront_logs[0].bucket_domain_name : null
+    prefix          = "cloudfront"
+  }
 
   origin {
     domain_name = aws_lb.main.dns_name
@@ -41,7 +49,7 @@ resource "aws_cloudfront_distribution" "main" {
       }
     }
 
-    viewer_protocol_policy = var.ssl_certificate_arn != "" ? "redirect-to-https" : "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -69,12 +77,13 @@ resource "aws_cloudfront_distribution" "main" {
   )
 }
 
-# CloudWatch Log Group for CloudFront logs (optional)
+# CloudWatch Log Group for CloudFront logs
 resource "aws_cloudwatch_log_group" "cloudfront" {
   count = var.enable_cloudfront ? 1 : 0
 
   name              = "/aws/cloudfront/${local.name_prefix}"
-  retention_in_days = 7
+  retention_in_days = 365
+  kms_key_id        = aws_kms_key.cloudwatch_logs.arn
 
   tags = local.common_tags
 }

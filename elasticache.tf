@@ -69,7 +69,9 @@ resource "aws_elasticache_replication_group" "main" {
 
   # Encryption
   at_rest_encryption_enabled = true
+  kms_key_id                 = aws_kms_key.elasticache.arn
   transit_encryption_enabled = true
+  auth_token                 = var.redis_auth_token
 
   # Logging
   log_delivery_configuration {
@@ -97,14 +99,16 @@ resource "aws_elasticache_replication_group" "main" {
 # CloudWatch Log Groups for ElastiCache logs
 resource "aws_cloudwatch_log_group" "elasticache_slow_log" {
   name              = "/aws/elasticache/${local.name_prefix}/slow-log"
-  retention_in_days = 7
+  retention_in_days = 365
+  kms_key_id        = aws_kms_key.cloudwatch_logs.arn
 
   tags = local.common_tags
 }
 
 resource "aws_cloudwatch_log_group" "elasticache_engine_log" {
   name              = "/aws/elasticache/${local.name_prefix}/engine-log"
-  retention_in_days = 7
+  retention_in_days = 365
+  kms_key_id        = aws_kms_key.cloudwatch_logs.arn
 
   tags = local.common_tags
 }

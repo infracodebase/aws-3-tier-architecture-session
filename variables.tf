@@ -109,6 +109,12 @@ variable "elasticache_engine_version" {
   default     = "7.0"
 }
 
+variable "redis_auth_token" {
+  description = "Auth token for ElastiCache Redis (16-128 characters)"
+  type        = string
+  sensitive   = true
+}
+
 variable "enable_cloudfront" {
   description = "Enable CloudFront distribution"
   type        = bool
