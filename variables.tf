@@ -92,9 +92,16 @@ variable "rds_master_username" {
 }
 
 variable "rds_master_password" {
-  description = "Master password for RDS"
+  description = "Master password for RDS (only for testing - use secrets_manager_enabled=true for production)"
   type        = string
+  default     = ""
   sensitive   = true
+}
+
+variable "rds_password_secret_arn" {
+  description = "ARN of AWS Secrets Manager secret containing RDS password"
+  type        = string
+  default     = ""
 }
 
 variable "elasticache_node_type" {
@@ -110,9 +117,22 @@ variable "elasticache_engine_version" {
 }
 
 variable "redis_auth_token" {
-  description = "Auth token for ElastiCache Redis (16-128 characters)"
+  description = "Redis auth token (only for testing - use secrets_manager_enabled=true for production)"
   type        = string
+  default     = ""
   sensitive   = true
+}
+
+variable "redis_token_secret_arn" {
+  description = "ARN of AWS Secrets Manager secret containing Redis auth token"
+  type        = string
+  default     = ""
+}
+
+variable "use_secrets_manager" {
+  description = "Use AWS Secrets Manager for secrets (recommended for production)"
+  type        = bool
+  default     = false
 }
 
 variable "enable_cloudfront" {
