@@ -4,37 +4,37 @@
     {
       "id": "users",
       "label": "Users",
+      "icon": "/icons/aws/general/users.png",
       "x": 1200,
-      "y": 0,
-      "icon": "/icons/aws/general/users.png"
+      "y": 0
     },
     {
       "id": "cloudfront",
       "label": "CloudFront",
-      "x": 1200,
-      "y": 300,
       "subtitle": "CDN",
-      "icon": "/icons/aws/network/cloudfront.png"
+      "icon": "/icons/aws/network/cloudfront.png",
+      "x": 1200,
+      "y": 300
     },
     {
       "id": "region",
       "label": "Region",
-      "x": 0,
-      "y": 600,
       "subtitle": "us-east-1",
       "icon": "/icons/aws/network/vpc.png",
       "type": "container",
+      "x": 0,
+      "y": 600,
       "width": 2860,
       "height": 1350
     },
     {
       "id": "vpc",
       "label": "VPC",
-      "x": 90,
-      "y": 90,
       "subtitle": "10.0.0.0/16",
       "icon": "/icons/aws/network/vpc.png",
       "type": "container",
+      "x": 90,
+      "y": 90,
       "width": 2680,
       "height": 1170,
       "parentId": "region"
@@ -42,11 +42,11 @@
     {
       "id": "az1",
       "label": "Availability Zone 1",
-      "x": 90,
-      "y": 90,
       "subtitle": "us-east-1a",
       "icon": "/icons/aws/compute/local-zones.png",
       "type": "container",
+      "x": 90,
+      "y": 90,
       "width": 1480,
       "height": 990,
       "parentId": "vpc"
@@ -54,11 +54,11 @@
     {
       "id": "az2",
       "label": "Availability Zone 2",
-      "x": 1690,
-      "y": 90,
       "subtitle": "us-east-1b",
       "icon": "/icons/aws/compute/local-zones.png",
       "type": "container",
+      "x": 1690,
+      "y": 90,
       "width": 900,
       "height": 990,
       "parentId": "vpc"
@@ -66,11 +66,11 @@
     {
       "id": "public_subnet_1",
       "label": "Public Subnet",
-      "x": 90,
-      "y": 90,
       "subtitle": "10.0.1.0/24",
       "icon": "/icons/aws/network/public-subnet.png",
       "type": "container",
+      "x": 90,
+      "y": 90,
       "width": 300,
       "height": 330,
       "parentId": "az1"
@@ -78,11 +78,11 @@
     {
       "id": "private_app_subnet_1",
       "label": "App Subnet",
-      "x": 1090,
-      "y": 90,
       "subtitle": "10.0.2.0/24",
       "icon": "/icons/aws/network/private-subnet.png",
       "type": "container",
+      "x": 1090,
+      "y": 90,
       "width": 300,
       "height": 330,
       "parentId": "az1"
@@ -90,11 +90,11 @@
     {
       "id": "private_data_subnet_1",
       "label": "Data Subnet",
-      "x": 90,
-      "y": 570,
       "subtitle": "10.0.3.0/24",
       "icon": "/icons/aws/network/private-subnet.png",
       "type": "container",
+      "x": 90,
+      "y": 570,
       "width": 720,
       "height": 330,
       "parentId": "az1"
@@ -102,11 +102,11 @@
     {
       "id": "public_subnet_2",
       "label": "Public Subnet",
-      "x": 90,
-      "y": 90,
       "subtitle": "10.0.11.0/24",
       "icon": "/icons/aws/network/public-subnet.png",
       "type": "container",
+      "x": 90,
+      "y": 90,
       "width": 300,
       "height": 330,
       "parentId": "az2"
@@ -114,11 +114,11 @@
     {
       "id": "private_app_subnet_2",
       "label": "App Subnet",
-      "x": 510,
-      "y": 90,
       "subtitle": "10.0.12.0/24",
       "icon": "/icons/aws/network/private-subnet.png",
       "type": "container",
+      "x": 510,
+      "y": 90,
       "width": 300,
       "height": 330,
       "parentId": "az2"
@@ -126,11 +126,11 @@
     {
       "id": "private_data_subnet_2",
       "label": "Data Subnet",
-      "x": 90,
-      "y": 570,
       "subtitle": "10.0.13.0/24",
       "icon": "/icons/aws/network/private-subnet.png",
       "type": "container",
+      "x": 90,
+      "y": 570,
       "width": 300,
       "height": 330,
       "parentId": "az2"
@@ -138,64 +138,64 @@
     {
       "id": "alb",
       "label": "Application Load Balancer",
-      "x": 90,
-      "y": 90,
       "subtitle": "prod-alb",
       "icon": "/icons/aws/network/elb-application-load-balancer.png",
+      "x": 90,
+      "y": 90,
       "parentId": "public_subnet_1"
     },
     {
       "id": "alb2",
       "label": "Application Load Balancer",
-      "x": 90,
-      "y": 90,
       "subtitle": "prod-alb",
       "icon": "/icons/aws/network/elb-application-load-balancer.png",
+      "x": 90,
+      "y": 90,
       "parentId": "public_subnet_2"
     },
     {
       "id": "ec2_1",
       "label": "EC2 Instance",
-      "x": 90,
-      "y": 90,
       "subtitle": "app-server-1",
       "icon": "/icons/aws/compute/ec2.png",
+      "x": 90,
+      "y": 90,
       "parentId": "private_app_subnet_1"
     },
     {
       "id": "ec2_2",
       "label": "EC2 Instance",
-      "x": 90,
-      "y": 90,
       "subtitle": "app-server-2",
       "icon": "/icons/aws/compute/ec2.png",
+      "x": 90,
+      "y": 90,
       "parentId": "private_app_subnet_2"
     },
     {
       "id": "cache",
       "label": "ElastiCache",
-      "x": 90,
-      "y": 90,
       "subtitle": "Redis",
       "icon": "/icons/aws/database/elasticache-for-redis.png",
+      "x": 90,
+      "y": 90,
       "parentId": "private_data_subnet_1"
     },
     {
       "id": "rds_primary",
       "label": "RDS Primary",
-      "x": 510,
-      "y": 90,
       "subtitle": "PostgreSQL",
       "icon": "/icons/aws/database/rds-instance.png",
+      "x": 510,
+      "y": 90,
       "parentId": "private_data_subnet_1"
     },
     {
       "id": "rds_standby",
       "label": "RDS Standby",
-      "x": 90,
-      "y": 90,
       "subtitle": "Multi-AZ",
       "icon": "/icons/aws/database/rds-instance.png",
+      "x": 90,
+      "y": 90,
       "parentId": "private_data_subnet_2"
     }
   ],
@@ -204,62 +204,82 @@
       "id": "e1",
       "source": "users",
       "target": "cloudfront",
-      "label": "HTTPS"
+      "label": "HTTPS",
+      "sourceHandle": "bottom",
+      "targetHandle": "top"
     },
     {
       "id": "e2",
       "source": "cloudfront",
       "target": "alb",
-      "label": "HTTPS"
+      "label": "HTTPS",
+      "sourceHandle": "bottom",
+      "targetHandle": "top"
     },
     {
       "id": "e3",
       "source": "cloudfront",
       "target": "alb2",
-      "label": "HTTPS"
+      "label": "HTTPS",
+      "sourceHandle": "bottom",
+      "targetHandle": "top"
     },
     {
       "id": "e4",
       "source": "alb",
       "target": "ec2_1",
-      "label": "HTTP"
+      "label": "HTTP",
+      "sourceHandle": "right",
+      "targetHandle": "left"
     },
     {
       "id": "e5",
       "source": "alb2",
       "target": "ec2_2",
-      "label": "HTTP"
+      "label": "HTTP",
+      "sourceHandle": "right",
+      "targetHandle": "left"
     },
     {
       "id": "e6",
       "source": "ec2_1",
       "target": "cache",
-      "label": "Redis"
+      "label": "Redis",
+      "sourceHandle": "bottom",
+      "targetHandle": "top"
     },
     {
       "id": "e7",
       "source": "ec2_1",
       "target": "rds_primary",
-      "label": "SQL"
+      "label": "SQL",
+      "sourceHandle": "bottom",
+      "targetHandle": "top"
     },
     {
       "id": "e8",
       "source": "ec2_2",
       "target": "cache",
-      "label": "Redis"
+      "label": "Redis",
+      "sourceHandle": "left",
+      "targetHandle": "right"
     },
     {
       "id": "e9",
       "source": "ec2_2",
       "target": "rds_primary",
-      "label": "SQL"
+      "label": "SQL",
+      "sourceHandle": "left",
+      "targetHandle": "right"
     },
     {
       "id": "e10",
       "source": "rds_primary",
       "target": "rds_standby",
       "label": "Replication",
-      "style": "dashed"
+      "style": "dashed",
+      "sourceHandle": "right",
+      "targetHandle": "left"
     }
   ]
 }
