@@ -1,0 +1,36 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and update with your values
+
+aws_region   = "us-east-1"
+environment  = "prod"
+project_name = "three-tier-app"
+
+vpc_cidr             = "10.0.0.0/16"
+availability_zones   = ["us-east-1a", "us-east-1b"]
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.11.0/24"]
+private_app_subnet_cidrs  = ["10.0.2.0/24", "10.0.12.0/24"]
+private_data_subnet_cidrs = ["10.0.3.0/24", "10.0.13.0/24"]
+
+ec2_instance_type = "t3.medium"
+
+rds_instance_class      = "db.t3.medium"
+rds_allocated_storage   = 100
+rds_engine_version      = "15.4"
+rds_database_name       = "appdb"
+rds_master_username     = "dbadmin"
+rds_master_password     = "CHANGE_ME_STRONG_PASSWORD"  # Use AWS Secrets Manager in production
+
+elasticache_node_type      = "cache.t3.medium"
+elasticache_engine_version = "7.0"
+
+enable_cloudfront = true
+
+# Optional: ACM certificate ARN for HTTPS
+# ssl_certificate_arn = "arn:aws:acm:us-east-1:123456789012:certificate/..."
+
+tags = {
+  Terraform   = "true"
+  Environment = "prod"
+  Project     = "three-tier-app"
+  ManagedBy   = "Terraform"
+}
