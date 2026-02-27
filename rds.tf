@@ -67,7 +67,7 @@ resource "aws_db_instance" "main" {
   # Database configuration
   db_name  = var.rds_database_name
   username = var.rds_master_username
-  password = var.rds_master_password
+  password = local.rds_password
   port     = 5432
 
   # Multi-AZ and backup configuration

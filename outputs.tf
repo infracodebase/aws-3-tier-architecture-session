@@ -121,3 +121,19 @@ output "application_url" {
   description = "Primary URL to access the application"
   value       = var.enable_cloudfront ? "https://${aws_cloudfront_distribution.main[0].domain_name}" : "http://${aws_lb.main.dns_name}"
 }
+
+# Secrets Manager outputs
+output "rds_password_secret_arn" {
+  description = "ARN of the RDS password secret in Secrets Manager"
+  value       = var.use_secrets_manager && var.rds_password_secret_arn == "" ? aws_secretsmanager_secret.rds_password[0].arn : var.rds_password_secret_arn
+}
+
+output "redis_token_secret_arn" {
+  description = "ARN of the Redis auth token secret in Secrets Manager"
+  value       = var.use_secrets_manager && var.redis_token_secret_arn == "" ? aws_secretsmanager_secret.redis_token[0].arn : var.redis_token_secret_arn
+}
+
+output "secrets_manager_enabled" {
+  description = "Whether AWS Secrets Manager is being used for credentials"
+  value       = var.use_secrets_manager
+}

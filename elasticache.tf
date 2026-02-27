@@ -71,7 +71,7 @@ resource "aws_elasticache_replication_group" "main" {
   at_rest_encryption_enabled = true
   kms_key_id                 = aws_kms_key.elasticache.arn
   transit_encryption_enabled = true
-  auth_token                 = var.redis_auth_token
+  auth_token                 = local.redis_auth_token
 
   # Logging
   log_delivery_configuration {
